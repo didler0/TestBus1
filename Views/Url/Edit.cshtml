@@ -1,0 +1,38 @@
+﻿@model TestBus1.Models.ShortUrlModel
+
+<h2>Редактировать ссылку</h2>
+
+<form asp-action="Edit" method="post" asp-controller="Url">
+
+    <!-- Скрытое поле для ID -->
+    <input type="hidden" name="id" asp-for="Id" value="@Model.Id" />
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.OriginalUrl)</label>
+        <input asp-for="OriginalUrl" name="OriginalUrl" class="form-control" value="@Model.OriginalUrl">
+        <span asp-validation-for="OriginalUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.ShortenedUrl)</label>
+        <input asp-for="ShortenedUrl" name="ShortenedUrl" class="form-control" value="@Model.ShortenedUrl" />
+        <span asp-validation-for="ShortenedUrl" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.CreatedDate)</label>
+        <input asp-for="CreatedDate" type="date" name="CreatedDate" class="form-control" value="@Model.CreatedDate.ToString("yyyy-MM-dd")" />
+        <span asp-validation-for="CreatedDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>@Html.DisplayNameFor(model => model.ClickCount)</label>
+        <input  asp-for="ClickCount" name="ClickCount" class="form-control" value="@Model.ClickCount" />
+        <span asp-validation-for="ClickCount" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        @Html.ActionLink("Назад к списку", "Index", "Url", null, new { @class = "btn btn-secondary" })
+    </div>
+</form>
