@@ -1,0 +1,28 @@
+﻿@model TestBus1.Models.ShortUrlModel
+
+<h2>Удалить ссылку</h2>
+
+<h3>Вы уверены, что хотите удалить эту ссылку?</h3>
+<div>
+    <h4>Ссылка</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Длинный URL</dt>
+        <dd class="col-sm-10">@Model.OriginalUrl</dd>
+
+        <dt class="col-sm-2">Сокращенный URL</dt>
+        <dd class="col-sm-10">@Model.ShortenedUrl</dd>
+
+        <dt class="col-sm-2">Дата создания</dt>
+        <dd class="col-sm-10">@Model.CreatedDate.ToString("dd.MM.yyyy HH:mm")</dd>
+
+        <dt class="col-sm-2">Количество переходов</dt>
+        <dd class="col-sm-10">@Model.ClickCount</dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Удалить" class="btn btn-danger" />
+        @Html.ActionLink("Назад к спику", "Index", "Url")
+    </form>
+</div>
