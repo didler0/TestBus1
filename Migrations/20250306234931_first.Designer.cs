@@ -12,7 +12,7 @@ using TestBus1.Data;
 namespace TestBus1.Migrations
 {
     [DbContext(typeof(UrlShortenerDbContext))]
-    [Migration("20250306181031_first")]
+    [Migration("20250306234931_first")]
     partial class first
     {
         /// <inheritdoc />
