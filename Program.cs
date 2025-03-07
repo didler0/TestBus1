@@ -20,7 +20,6 @@ using (var scope = app.Services.CreateScope())
 {
     var dbContext = scope.ServiceProvider.GetRequiredService<UrlShortenerDbContext>();
     //dbContext.Database.EnsureCreated();
-    // Автоматическое удаление базы данных 
     //dbContext.Database.EnsureDeleted();
     dbContext.Database.Migrate();
 }
@@ -43,6 +42,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Url}/{action=Index}/{id?}");
+
 
 app.MapControllerRoute(
     name: "default",

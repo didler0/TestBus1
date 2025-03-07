@@ -17,16 +17,24 @@
         {
             <tr>
                 <td>@item.OriginalUrl</td>
-                <td><a method="post" href="/Url/Redirect/@item.ShortenedUrl" target="_blank">@item.ShortenedUrl</a></td>
+                <td>
+                    <a href="/Url/Redirect/@item.ShortenedUrl" target="_blank">@item.ShortenedUrl</a>
+                </td>
                 <td>@item.CreatedDate.ToShortDateString()</td>
                 <td>@item.ClickCount</td>
                 <td>
-
-                    <a href='@Url.Action("Edit", "Url", new { id = item.Id })' class="btn btn-warning btn-sm">Редактировать</a>
-
+                    <a href='@Url.Action("Edit", "Url", new { id = item.Id })' >Редактировать</a>
+                </td>
+                <td>
+                    <a href="@Url.Action("Delete", "Url", new { id = item.Id })">Удалить</a>
                 </td>
             </tr>
         }
     </tbody>
+    
 </table>
-@Html.ActionLink("Создать новую ссылку", "Create", "Url")
+
+@Html.ActionLink("Создать новую ссылку", "Create", "Url", null, new { @class = "btn btn-primary" })
+
+
+

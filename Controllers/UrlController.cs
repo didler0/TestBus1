@@ -15,19 +15,36 @@ namespace TestBus1.Controllers
             _context = context;
         }
 
-        // Главная страница со списком ссылок
         public IActionResult Index()
         {
             var urls = _context.ShortUrls.ToList();
             return View(urls);
         }
 
-        // Страница создания новой ссылки
         public IActionResult Create()
         {
             return View();
         }
 
+
+        
+
+
+        [Route("Url/Delete/{id}")]
+        public IActionResult Delete_POST(int id)
+        {
+            var url = _context.ShortUrls.Find(id);
+
+            if (url == null)
+            {
+                return NotFound();
+            }
+
+            _context.ShortUrls.Remove(url);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
         [HttpPost]
         public IActionResult Create(string originalUrl)
         {
@@ -52,7 +69,6 @@ namespace TestBus1.Controllers
             return RedirectToAction("Index");
         }
 
-        // Страница редактирования ссылки
         public IActionResult Edit(int id)
         {
             var url = _context.ShortUrls.Find(id);
@@ -64,8 +80,7 @@ namespace TestBus1.Controllers
             return View(url);
         }
 
-        // Обработка данных формы редактирования ссылки
-        [HttpPost]
+        [HttpPost("Url/Edit/{id}")]
         public IActionResult Edit(ShortUrlModel model)
         {
             if (ModelState.IsValid)
@@ -79,7 +94,7 @@ namespace TestBus1.Controllers
             return View(model);
         }
 
-        // Генерация короткого URL
+
         private string GenerateShortUrl()
         {
             var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -109,6 +124,8 @@ namespace TestBus1.Controllers
             
             return Redirect(url.OriginalUrl);
         }
+
+        
 
     }
 }

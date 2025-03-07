@@ -2,15 +2,10 @@
 
 <h2>Создать новую ссылку</h2>
 
-
-
-<form method="post" asp-controller="Url" asp-action="Create">
-
+<form method="post" asp-controller="Url" asp-action="Create" >
     <label>@Html.DisplayNameFor(model => model.OriginalUrl)</label>
     <input asp-for="OriginalUrl" name="originalUrl" placeholder="Введите длинный URL" />
-    <span asp-validation-for="OriginalUrl"></span>
-
-
+    <span asp-validation-for="model.OriginalUrl">@Html.ValidationMessageFor(model => model.OriginalUrl)</span>
     <input type="submit" value="Создать">
 </form>
 @Html.ActionLink("Назад к спику", "Index", "Url")
